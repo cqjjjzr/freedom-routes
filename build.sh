@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Zeus
+#
+#  ./build.sh release
+#
+
 # Build binary for distribution.
 #
 # Usage:
@@ -13,13 +18,14 @@
 #   ./build.sh -d /usr/share/freedom-routes    # build with system go
 #   ./build.sh release                         # build $RELEASEs with user complied go and upload the package to s3.
 
-EXTRA_FILES="routes/templates freedom-routes.etc README.md CHANGELOG.md"
-RELEASE="homebrew/amd64 homebrew/386 windows/386 windows/amd64"
+EXTRA_FILES="routes/templates freedom-routes.etc README.md"
+RELEASE="linux/amd64 linux/386 homebrew/amd64 homebrew/386 windows/amd64 windows/386"
 VERSION=$(sed -rn 's/.*const VERSION.*"([0-9.]+)".*/\1/p' main.go)
 declare -A OS_MAP=(
 	[homebrew]="darwin"
 )
 declare -A DIR_MAP=(
+	[linux]="/usr/share/freedom-routes"
 	[homebrew]="/usr/share/freedom-routes"
 )
 
@@ -33,33 +39,38 @@ function ext { [ $1 == "windows" ] && echo .exe || echo ""; }
 
 # dist{platform, os, arch, assets_dir}
 function dist {
-	rm -r dist 2>/dev/null
-	mkdir dist
+	output="dist/$platform.$arch"
+	rm -r $output 2>/dev/null
+	mkdir -p $output
 
-	cp -r $EXTRA_FILES dist
+	cp -r $EXTRA_FILES $output
+	if [[ -d "misc/$platform" ]]; then
+		cp -r misc/$platform/* $output
+	fi
+
 	build
 }
 
 # build{platform, os, arch, assets_dir}
 function build {
-	echo -e "\nbuilding $platform/$arch"
+	echo -e "\n>> building $platform/$arch"
+	output="dist/$platform.$arch/freedom-routes$(ext $os)"
 	sed -i "/const ASSETS_MODE/s~.*~const ASSETS_MODE = \"$assets_dir\"~" routes/routes.go
-	CGO_ENABLED=$(cgo_enabled $os) GOOS=$os GOARCH=$arch $GOROOT/bin/go build -o "dist/freedom-routes$(ext $os)"
+	CGO_ENABLED=$(cgo_enabled $os) GOOS=$os GOARCH=$arch $GOROOT/bin/go build -o "$output"
 	sed -i '/const ASSETS_MODE/s/.*/const ASSETS_MODE = "source"/' routes/routes.go
+	echo ">> created $output"
 }
 
 # package{platform, os, arch}
 function package {
-	echo "packing $platform/$arch" 
-	mkdir dist/freedom-routes-$VERSION
-	cp -r dist/* dist/freedom-routes-$VERSION 2>/dev/null
+	echo ">> packing $platform/$arch"
 
 	case $os in
 		linux | darwin )
-			tar zcvf freedom-routes.$platform.$arch-$VERSION.tar.gz -C dist freedom-routes-$VERSION;;
-		windows ) 
-			rm ../freedom-routes.$platform.$arch.zip 2>/dev/null
-			cd dist && zip -r ../freedom-routes.$platform.$arch.zip freedom-routes-$VERSION && cd ..
+			tar zcf dist/freedom-routes.$platform.$arch-$VERSION.tar.gz -C dist $platform.$arch;;
+		windows )
+			rm dist/freedom-routes.$platform.$arch-$VERSION.zip 2>/dev/null
+			cd dist && zip -r freedom-routes.$platform.$arch-$VERSION.zip $platform.$arch && cd ..
 			;;
 	esac
 }
@@ -94,16 +105,20 @@ case $1 in
 		dist
 		[ $o_package == true ] && package
 		;;
-	release )
-		GOROOT="/home/guten/dev/src/go/go"
-		rm *.zip *.tar.gz 2>/dev/null
+	dist )
 		for release in $RELEASE; do
 			platform=${release%/*}; arch=${release#*/}; os=${OS_MAP[$platform]-$platform}
 			assets_dir=${DIR_MAP[$platform]-$o_assets_dir}
+			# fix linux/amd64 build error
+			[[ $release == "linux/amd64" ]] && GOROOT="" || GOROOT="/home/guten/dev/src/go/go"
 			dist
 			package
 		done
-		upload *.zip *.tar.gz
+		;;
+	release )
+		rm dist/*.tar.gz dist/*.zip 2>/dev/null
+		"$0" dist
+		upload dist/*.tar.gz dist/*.zip
 		;;
 	upload )
 		shift

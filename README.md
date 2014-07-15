@@ -45,6 +45,10 @@ Linux: Desktop, OpenWRT, DD-WRT, ASUSWRT
 
 **Windows**
 
+下载, 解压, 右键route-up.bat, 已管理员身份运行.
+
+运行freedom-routes.bat
+
 Windows导入需要好几分钟, 请耐心等待, 有哪位大神知道有更好的方法的话, 求指教.
 
 	$ freedom-routes windows
