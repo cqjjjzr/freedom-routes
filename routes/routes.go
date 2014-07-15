@@ -32,6 +32,10 @@ func (ip Ip) String() string {
 	return fmt.Sprintf("%s/%s", ip.Ip, ip.Cidr)
 }
 
+func PrintTemplatesPath() {
+	fmt.Printf(">> templates path: %s/templates\n", ASSETS_PATH)
+}
+
 // Generate result files from template.
 func Generate(templateName string, ips []Ip, outputDir string) {
 	templateDir := filepath.Join(ASSETS_PATH, "templates", templateName)

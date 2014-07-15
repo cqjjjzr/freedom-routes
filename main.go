@@ -48,6 +48,7 @@ func main() {
 	} else if pflag.NArg() > 0 {
 		genRoutes(pflag.Args(), *output)
 	} else {
+		routes.PrintTemplatesPath()
 		pflag.Usage()
 	}
 }
