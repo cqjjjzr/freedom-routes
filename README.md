@@ -24,11 +24,11 @@ freedom-routes, chnroutes的改进版本, 大幅提升VPN浏览国内网页速�
 
 每24小时更新一次.
 
-- **Linux, OpenWRT, DD-WRT, ASUSWRT**: [routes-up.sh](https://s3.amazonaws.com/dl.saber.li/freedom-routes/linux/routes-up.sh) [routes-down.sh](https://s3.amazonaws.com/dl.saber.li/freedom-routes/linux/routes-down.sh)
-- **Mac OS X**: [routes-up.sh](https://s3.amazonaws.com/dl.saber.li/freedom-routes/mac/routes-up.sh) [routes-down.sh](https://s3.amazonaws.com/dl.saber.li/freedom-routes/mac/routes-down.sh)
-- **Windows**: [routes-up.bat](https://s3.amazonaws.com/dl.saber.li/freedom-routes/windows/routes-up.bat) [routes-down.bat](https://s3.amazonaws.com/dl.saber.li/freedom-routes/windows/routes-down.bat)
-- **Android**: [routes-up.sh](https://s3.amazonaws.com/dl.saber.li/freedom-routes/android/routes-up.sh) [routes-down.sh](https://s3.amazonaws.com/dl.saber.li/freedom-routes/android/routes-down.sh)
-- **RouterOS**: [freedomroutes.rsc](https://s3.amazonaws.com/dl.saber.li/freedom-routes/routeros/freedomroutes.rsc)
+- **Linux, OpenWRT, DD-WRT, ASUSWRT**: [routes-up.sh](http://dl.saber.li/freedom-routes/linux/routes-up.sh) [routes-down.sh](http://dl.saber.li/freedom-routes/linux/routes-down.sh)
+- **Mac OS X**: [routes-up.sh](http://dl.saber.li/freedom-routes/mac/routes-up.sh) [routes-down.sh](http://dl.saber.li/freedom-routes/mac/routes-down.sh)
+- **Windows**: [routes-up.bat](http://dl.saber.li/freedom-routes/windows/routes-up.bat) [routes-down.bat](http://dl.saber.li/freedom-routes/windows/routes-down.bat)
+- **Android**: [routes-up.sh](http://dl.saber.li/freedom-routes/android/routes-up.sh) [routes-down.sh](http://dl.saber.li/freedom-routes/android/routes-down.sh)
+- **RouterOS**: [freedomroutes.rsc](http://dl.saber.li/freedom-routes/routeros/freedomroutes.rsc)
 
 ## 使用方法
 
