@@ -18,50 +18,72 @@ freedom-routes, chnroutes的改进版本, 大幅提升VPN浏览国内网页速�
 2. 支持模板, 可以自定义脚本
 3. Go语言写, 单exe运行文件
 
+# 网络版本
+
+## 下载
+
+每24小时更新一次.
+
+- **Linux, OpenWRT, DD-WRT, ASUSWRT**: [routes-up.sh](https://s3.amazonaws.com/dl.saber.li/freedom-routes/linux/routes-up.sh) [routes-down.sh](https://s3.amazonaws.com/dl.saber.li/freedom-routes/linux/routes-down.sh)
+- **Mac OS X**: [routes-up.sh](https://s3.amazonaws.com/dl.saber.li/freedom-routes/mac/routes-up.sh) [routes-down.sh](https://s3.amazonaws.com/dl.saber.li/freedom-routes/mac/routes-down.sh)
+- **Windows**: [routes-up.bat](https://s3.amazonaws.com/dl.saber.li/freedom-routes/windows/routes-up.bat) [routes-down.bat](https://s3.amazonaws.com/dl.saber.li/freedom-routes/windows/routes-down.bat)
+- **Android**: [routes-up.sh](https://s3.amazonaws.com/dl.saber.li/freedom-routes/android/routes-up.sh) [routes-down.sh](https://s3.amazonaws.com/dl.saber.li/freedom-routes/android/routes-down.sh)
+- **RouterOS**: [freedomroutes.rsc](https://s3.amazonaws.com/dl.saber.li/freedom-routes/routeros/freedomroutes.rsc)
+
+## 使用方法
+
+这些ip地址库并不是固定不变的, 尽管变化不大, 但还是建议每隔两三个月更新一次.
+
+**直接运行**
+
+```
+$ ./routes-up.sh
+
+```
+
+Windows需要右键route-up.bat -> 已管理员身份运行. 并且导入需要好几分钟, 请耐心等待, 有哪位大神知道有更好的方法的话, 求指教.
+
+**OpenVPN**
+
+```
+# cp them to /etc/openvpn
+# edit /etc/openvpn/hello.conf
+
+  script-security 2
+  up ./routes-up.sh
+  down ./routes-down.sh
+```
+
+**PPTP**
+
+```
+cp routes-up.sh /etc/ppp/ip-pre-up
+cp routes-down.sh /etc/ppp/ip-down.d/ip-down
+```
+
+# 本地版本
+
+## 安装
+
+- **ArchLinux**: 从AUR里面安装 `$ yaourt -S freedom-routes`
+- **Mac OS X**: `$ brew install sabersalv/alt/freedom-routes`
+- **Windows**: 下载[x64](https://github.com/SaberSalv/freedom-routes/releases/download/v1.1.0/freedom-routes.windows.amd64-1.1.0.zip)(64位), [x86](https://github.com/SaberSalv/freedom-routes/releases/download/v1.1.0/freedom-routes.windows.386-1.1.0.zip)(32位)
+
 ## 使用方法
 
 **Usage**:
 
-	$ freedom-routes [options] <template>
-      -o, --output="."                 # 输出脚本目录
+```
+$ freedom-routes linux
+> 生成routes-up.sh routes-down.sh
+$ freedom-routes mac
+$ freedom-routes windows
+
+$ freedom-routes [options] <template>
+    -o, --output="."                 # 输出脚本目录
+```
 
 查看所有的[模板](https://github.com/SaberSalv/freedom-routes/tree/master/routes/templates)
-
-Linux: Desktop, OpenWRT, DD-WRT, ASUSWRT
-
-**Linux (OpenVPN)**
-
-	# freedom-routes linux -o /etc/openvpn
-	# edit /etc/openvpn/foo.conf
-
-		script-security 2
-		up ./routes-up.sh
-		down ./routes-down.sh
-
-**Mac OS X**
-
-	$ freedom-routes mac
-	# ./routes-up.sh
-
-**Windows**
-
-下载, 解压, 右键route-up.bat, 已管理员身份运行.
-
-运行freedom-routes.bat
-
-Windows导入需要好几分钟, 请耐心等待, 有哪位大神知道有更好的方法的话, 求指教.
-
-	$ freedom-routes windows
-	# ./routes-up.bat
-
-**RouterOS**
-
-	$ freedom-routes routeros
-
-* upload freedomroutes.rsc via winbox/WebConsole/ssh/ftp
-* get into your router terminal, type `/import freedomroutes.rsc`
-* add a default route with `routing-mark` set to `freedomroutes.domestic`
-* see `/ip route rule print` for more details..
 
 **本地的配置文件**
 
@@ -72,8 +94,6 @@ Windows导入需要好几分钟, 请耐心等待, 有哪位大神知道有更好
 
 **自动更新**
 
-这些ip数据不是固定不变的, 尽管变化不大, 但还是建议每隔两三个月更新一次.
-
 (Linux)
 
 	$ create /etc/cron.weekly/freedom-routes with 0755 mode
@@ -82,22 +102,7 @@ Windows导入需要好几分钟, 请耐心等待, 有哪位大神知道有更好
 
 		freedom-routes linux -o /etc/openvpn
 
-
-## 安装
-
-- **ArchLinux**: 从AUR里面安装 `$ yaourt -S freedom-routes`
-- **Mac OS X**: `$ brew install sabersalv/alt/freedom-routes`
-- **Windows**: 下载[x64](http://dl.saber.li/freedom-routes/freedom-routes.windows.amd64.zip)(64位), [x86](http://dl.saber.li/freedom-routes/freedom-routes.windows.386.zip)(32位)
-
 # 开发
-
-编译
-----
-
-	$ mkdir output
-	$ sed -i '/const ASSETS_MODE/s/.*/const ASSETS_MODE = "runtime"/' routes/routes.go
-	$ go build -o output/freedom-routes
-	$ cp -r routes/templates output
 
 ## 任何人都可以帮助这个项目
 
@@ -107,6 +112,16 @@ Windows导入需要好几分钟, 请耐心等待, 有哪位大神知道有更好
 
 感谢所有[贡献者](https://github.com/SaberSalv/freedom-routes/contributors). </br>
 感谢原来的[chnroutes](https://github.com/fivesheep/chnroutes)作者.
+
+
+## 编译
+
+```
+$ mkdir output
+$ sed -i '/const ASSETS_MODE/s/.*/const ASSETS_MODE = "runtime"/' routes/routes.go
+$ go build -o output/freedom-routes
+$ cp -r routes/templates output
+```
 
 ## 版权
 

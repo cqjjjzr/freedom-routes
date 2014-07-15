@@ -17,7 +17,6 @@ $ bin/uploader upload s3 *.sh
 
 [安装scs-cli-tool](http://open.sinastorage.com/?c=doc&a=sdk#scs-cli-tool)
 
-
 ## ref
 
 ```
