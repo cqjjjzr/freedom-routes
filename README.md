@@ -33,11 +33,14 @@ freedom-routes, chnroutes的改进版本, 大幅提升VPN浏览国内网页速�
 
 这些ip地址库并不是固定不变的, 尽管变化不大, 但还是建议每隔两三个月更新一次.
 
-**直接运行**
+**手动运行**
 
 ```
-$ ./routes-up.sh
+启用
+# ./routes-up.sh
 
+停用
+# ./routes-down.sh
 ```
 
 Windows需要右键route-up.bat -> 已管理员身份运行. 并且导入需要好几分钟, 请耐心等待, 有哪位大神知道有更好的方法的话, 求指教.
