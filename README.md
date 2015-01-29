@@ -16,7 +16,6 @@ freedom-routes, chnroutes的改进版本, 大幅提升VPN浏览国内网页速�
 
 1. Linux下导入路由的速度更快, 秒时间导入
 2. 支持模板, 可以自定义脚本
-3. Go语言写, 单exe运行文件
 
 # 网络版本
 
@@ -63,44 +62,7 @@ cp routes-down.sh /etc/ppp/ip-down.d/ip-down
 
 # 本地版本
 
-## 安装
-
-- **ArchLinux**: 从AUR里面安装 `$ yaourt -S freedom-routes`
-- **Mac OS X**: `$ brew install sabersalv/alt/freedom-routes`
-- **Windows**: 下载[x64](https://github.com/SaberSalv/freedom-routes/releases/download/v1.1.0/freedom-routes.windows.amd64-1.1.0.zip)(64位), [x86](https://github.com/SaberSalv/freedom-routes/releases/download/v1.1.0/freedom-routes.windows.386-1.1.0.zip)(32位)
-
-## 使用方法
-
-**Usage**:
-
-```
-$ freedom-routes linux
-> 生成routes-up.sh routes-down.sh
-$ freedom-routes mac
-$ freedom-routes windows
-
-$ freedom-routes [options] <template>
-    -o, --output="."                 # 输出脚本目录
-```
-
-查看所有的[模板](https://github.com/SaberSalv/freedom-routes/tree/master/routes/templates)
-
-**本地的配置文件**
-
-(Linux)
-
-	# edit /etc/freedom-routes
-		70.33.217.1/32
-
-**自动更新**
-
-(Linux)
-
-	$ create /etc/cron.weekly/freedom-routes with 0755 mode
-
-		#!/bin/bash
-
-		freedom-routes linux -o /etc/openvpn
+查看[本地版本使用说明](https://github.com/SaberSalv/freedom-routes/blob/master/docs/local.md), 不过不推荐使用, 用网络版本更方便.
 
 # 开发
 
@@ -127,7 +89,7 @@ $ cp -r routes/templates output
 
 (the MIT License)
 
-Copyright (c) 2013-2014 Saber
+Copyright (c) 2013-2015 Saber
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the 'Software'), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
