@@ -43,7 +43,7 @@ freedom-routes, chnroutes的改进版本, 大幅提升VPN浏览国内网页速�
 # ./routes-down.sh
 ```
 
-Windows需要右键route-up.bat -> 已管理员身份运行. 并且导入需要好几分钟, 请耐心等待, 有哪位大神知道有更好的方法的话, 求指教.
+Windows需要右键routes-up.bat -> 已管理员身份运行. 并且导入需要好几分钟, 请耐心等待, 有哪位大神知道有更好的方法的话, 求指教.
 
 **OpenVPN**
 
