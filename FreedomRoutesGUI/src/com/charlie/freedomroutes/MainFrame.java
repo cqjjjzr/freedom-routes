@@ -271,7 +271,7 @@ public class MainFrame extends javax.swing.JFrame {
                         fw.write(data+"\n");
                 }
             }
-            JOptionPane.showConfirmDialog(null, "操作完成！", "提示", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showConfirmDialog(null, "操作完成！", "提示", JOptionPane.PLAIN_MESSAGE);
             SwingUtilities.invokeLater((Runnable) ()->{
                 btnUpdate.setEnabled(true);
                 btnStart.setEnabled(true);
@@ -309,7 +309,7 @@ public class MainFrame extends javax.swing.JFrame {
                 btnStart.setEnabled(true);
                 btnStop.setEnabled(true);
             });
-            JOptionPane.showConfirmDialog(null, "操作完成！", "提示", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showConfirmDialog(null, "操作完成！", "提示", JOptionPane.PLAIN_MESSAGE);
         } catch (IOException ex) {
             Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -336,7 +336,7 @@ public class MainFrame extends javax.swing.JFrame {
                 btnStart.setEnabled(true);
                 btnStop.setEnabled(true);
             });
-            JOptionPane.showConfirmDialog(null, "操作完成！", "提示", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showConfirmDialog(null, "操作完成！", "提示", JOptionPane.PLAIN_MESSAGE);
         } catch (IOException ex) {
             Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
