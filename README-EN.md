@@ -36,7 +36,7 @@ View all avaliable templates at [here](https://github.com/SaberSalv/freedom-rout
 		up ./routes-up.sh
 		down ./routes-down.sh
 
-**GUI Application for Windows**
+#GUI Application for Windows
     Windows user can use GUI Application to auto update route table. Please install Java Runtime Environment to execute the application. Download:http://pan.baidu.com/s/1c0u9lte
 
 **RouterOS**
