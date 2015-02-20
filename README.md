@@ -48,7 +48,7 @@ Windows需要右键routes-up.bat -> 已管理员身份运行. 并且导入需要
 
 ## Windows版图形化应用程序
 
-Windows用户可以使用一个图形化应用程序修改路由表。该程序使用Java编写，请安装Java运行环境来执行程序。下载地址：[FreedomRoutesGUI.jar](http://pan.baidu.com/s/1c0CQgqG)，同时该程序源代码也在Git库里面。
+Windows用户可以使用一个图形化应用程序修改路由表。该程序使用Java编写，请安装Java运行环境来执行程序。下载地址：[FreedomRoutesGUI.jar](http://pan.baidu.com/s/152Fnw)，同时该程序源代码也在Git库里面。
 
 **OpenVPN**
 
