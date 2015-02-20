@@ -29,6 +29,7 @@ freedom-routes, chnroutes的改进版本, 大幅提升VPN浏览国内网页速�
 - **Android**: [routes-up.sh](http://dl.saber.li/freedom-routes/android/routes-up.sh) [routes-down.sh](http://dl.saber.li/freedom-routes/android/routes-down.sh)
 - **RouterOS**: [freedomroutes.rsc](http://dl.saber.li/freedom-routes/routeros/freedomroutes.rsc)
 
+
 ## 使用方法
 
 这些ip地址库并不是固定不变的, 尽管变化不大, 但还是建议每隔两三个月更新一次.
@@ -44,6 +45,10 @@ freedom-routes, chnroutes的改进版本, 大幅提升VPN浏览国内网页速�
 ```
 
 Windows需要右键routes-up.bat -> 已管理员身份运行. 并且导入需要好几分钟, 请耐心等待, 有哪位大神知道有更好的方法的话, 求指教.
+
+## Windows版图形化应用程序
+
+Windows用户可以使用一个图形化应用程序修改路由表。该程序使用Java编写，请安装Java运行环境来执行程序。下载地址：[FreedomRoutesGUI.jar](http://pan.baidu.com/s/1c0CQgqG)，同时该程序源代码也在Git库里面。
 
 **OpenVPN**
 
